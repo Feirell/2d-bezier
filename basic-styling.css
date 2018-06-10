@@ -1,0 +1,15 @@
+.holding-point {
+    fill: grey;
+}
+
+.intermidiate-1 {
+    fill: hsl(110, 100%, 50%);
+}
+
+.intermidiate-2 {
+    fill: hsl(110, 75%, 50%);
+}
+
+.intermidiate-3 {
+    fill: hsl(110, 50%, 50%);
+}
