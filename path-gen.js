@@ -72,36 +72,6 @@
         }
     }
 
-    /**
-     * Calculates the level of the given intermediate index of the given bezier grade.
-     * 
-     * Example:
-     * 
-     * i = 3, grade = 3
-     * ```text
-     *          level
-     *  0 1 2   1
-     *   3 4    2       <= the level of the given index 3
-     *    5     3
-     * ```
-     * 
-     * @param {number} i 
-     * @param {number} bezierGrade 
-     */
-    window.calcLevel = function calcLevel(i, bezierGrade) {
-        let level = 1;
-        let levelRange = bezierGrade;
-
-        while (i >= levelRange) {
-            if (bezierGrade <= 0)
-                return NaN;
-            levelRange += --bezierGrade;
-            level++;
-        }
-
-        return level;
-    }
-
     function interactiveBezier(className, step, holdingPoints) {
         const bezier = new(Function.prototype.bind.apply(Bezier, [undefined].concat(holdingPoints)));
 
@@ -112,45 +82,46 @@
         svgContainer.appendChild(createPolyline('holding', holdingPoints));
 
         let circle;
-        let intermediates = [];
-        let intermediatesLines = [];
+        let dots = [];
+        let interDotLines = [];
+
+        interDotLines
 
         function setPointAt(t) {
-            let point = bezier.atWithIntermidiate(t);
+            let points = bezier.atWithIntermidiate(t);
 
             if (!circle) {
-                circle = createCircleAt(point.point.x, point.point.y, 'intermidiate ' + className);
+                circle = createCircleAt(points.point.x, points.point.y, 'intermidiate ' + className);
                 svgContainer.appendChild(circle);
             } else {
-                circle.cx.baseVal.value = point.point.x;
-                circle.cy.baseVal.value = point.point.y;
+                circle.cx.baseVal.value = points.point.x;
+                circle.cy.baseVal.value = points.point.y;
             }
 
-            const intermediatesPoints = point.intermediates.slice(bezier.grade + 1);
 
             for (let i = 0; i < intermediatesPoints.length; i++) {
                 let intermidiateLevel = calcLevel(i, bezier.grade);
 
-                if (!intermediates[i]) {
-                    intermediates[i] = createCircleAt(intermediatesPoints[i].x, intermediatesPoints[i].y, 'intermidiate-' + intermidiateLevel + ' ' + className);
-                    intermediates[i].id = 'intermidiate-' + i;
-                    svgContainer.appendChild(intermediates[i]);
+                if (!dots[i]) {
+                    dots[i] = createCircleAt(intermediatesPoints[i].x, intermediatesPoints[i].y, 'intermidiate-' + intermidiateLevel + ' ' + className);
+                    dots[i].id = 'intermidiate-' + i;
+                    svgContainer.appendChild(dots[i]);
                 } else {
-                    intermediates[i].cx.baseVal.value = intermediatesPoints[i].x;
-                    intermediates[i].cy.baseVal.value = intermediatesPoints[i].y;
+                    dots[i].cx.baseVal.value = intermediatesPoints[i].x;
+                    dots[i].cy.baseVal.value = intermediatesPoints[i].y;
                 }
 
 
                 if ((intermidiateLevel == calcLevel(i + 1, bezier.grade)) && !isNaN(calcLevel(i + 1, bezier.grade))) {
                     // console.log('using', i, i + 1)
-                    if (!intermediatesLines[i]) {
-                        intermediatesLines[i] = createLine('intermidiate-line-' + intermidiateLevel + ' ' + className, intermediatesPoints[i], intermediatesPoints[i + 1]);
-                        svgContainer.appendChild(intermediatesLines[i]);
+                    if (!interDotLines[i]) {
+                        interDotLines[i] = createLine('intermidiate-line-' + intermidiateLevel + ' ' + className, intermediatesPoints[i], intermediatesPoints[i + 1]);
+                        svgContainer.appendChild(interDotLines[i]);
                     } else {
-                        intermediatesLines[i].x1.baseVal.value = intermediatesPoints[i].x;
-                        intermediatesLines[i].y1.baseVal.value = intermediatesPoints[i].y;
-                        intermediatesLines[i].x2.baseVal.value = intermediatesPoints[i + 1].x;
-                        intermediatesLines[i].y2.baseVal.value = intermediatesPoints[i + 1].y;
+                        interDotLines[i].x1.baseVal.value = intermediatesPoints[i].x;
+                        interDotLines[i].y1.baseVal.value = intermediatesPoints[i].y;
+                        interDotLines[i].x2.baseVal.value = intermediatesPoints[i + 1].x;
+                        interDotLines[i].y2.baseVal.value = intermediatesPoints[i + 1].y;
                     }
                 }
                 // else console.log(i, 'and', i + 1, 'do nate have the same level of ', calcLevel(i, bezier.grade), 'and', calcLevel(i + 1, bezier.grade))
