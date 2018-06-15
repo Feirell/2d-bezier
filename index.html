@@ -6,44 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
     <link rel="stylesheet" href="./basic-styling.css">
+    <script src="./simple-svg.js"></script>
     <script src="./bezier.js"></script>
-    <!-- <script>
-        const points = [{
-            x: 1,
-            y: 2
-        }, {
-            x: 1,
-            y: 1
-        }, {
-            x: 0,
-            y: 2
-        }, {
-            x: 1,
-            y: 4
-        }];
-
-        const cubicA = new Bezier(points[0], points[1], points[2], points[3]);
-        const cubicB = new CubicBezier(points[0], points[1], points[2], points[3]);
-
-        // console.log('Bezier:', cubicA)
-        // console.log('CubicBezier:', cubicB)
-
-        const step = 0.1;
-
-        // for (let i = 0; i <= 1; i = Math.round((i + step) * 10) / 10) {
-        //     const a = cubicA.at(i);
-        //     const b = cubicB.at(i);
-        //     console.log('bezier at ' + i + '\n  Bezier:\n    x: ' + a.x + '\n    y: ' + a.y + '\n  Cubic Bezier:\n    x: ' + b.x + '\n    y: ' + b.y);
-        // }
-    </script> -->
 </head>
 
 <body>
 
-    <svg version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg" id="svg-container">
-
-    </svg>
+    <svg version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg" id="svg-container-a"></svg>
+    <svg version="1.1" baseProfile="full" width="150" height="100" xmlns="http://www.w3.org/2000/svg" id="svg-container-b"></svg>
 
     <input type="range" name="t-slider" id="t-slider" max="1" min="0" step="any" list="step-legend">
 

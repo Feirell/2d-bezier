@@ -1,15 +1,18 @@
-.holding-point {
+polyline,
+line {
+    fill: none;
+    stroke: black;
+}
+
+.line.intermidiate {
+    stroke: grey;
+}
+
+.point.intermidiate {
     fill: grey;
 }
 
-.intermidiate-1 {
-    fill: hsl(110, 100%, 50%);
-}
-
-.intermidiate-2 {
-    fill: hsl(110, 75%, 50%);
-}
-
-.intermidiate-3 {
-    fill: hsl(110, 50%, 50%);
+.point.final {
+    fill: white;
+    stroke: grey;
 }
