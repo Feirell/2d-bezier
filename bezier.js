@@ -106,6 +106,15 @@
     }
 
     {
+        function pointOn(t, a, b) {
+            return {
+                x: a.x + t * (b.x - a.x),
+                y: a.y + t * (b.y - a.y)
+            }
+        }
+    }
+
+    {
         const cache = [];
         // binomial coefficient
         function bc(n, k) {
@@ -137,24 +146,26 @@
 
     const pow = Math.pow.bind(Math);
 
-    function Bezier() {
+    function Bezier(...points) {
+        points = (points[0] instanceof Array) ?
+            points[0] :
+            Array.prototype.slice.call(points);
 
-        const points = [];
-
-        for (let i = 0; i < arguments.length; i++) {
-            const current = arguments[i];
-
-            const point = points[i] = Object.freeze({
-                x: parseFloat(current.x),
-                y: parseFloat(current.y)
-            })
+        points.map(point => {
+            point = Object.freeze({
+                x: parseFloat(point.x),
+                y: parseFloat(point.y)
+            });
 
             if (!isFinite(point.x))
                 throw new Error('point.x was not finite for parameter ' + point + ' was ' + i + ' argument');
 
             if (!isFinite(point.y))
                 throw new Error('point.y was not finite for parameter ' + point + ' was ' + i + ' argument');
-        }
+
+            return point;
+        })
+
 
         Object.defineProperties(this, {
             points: {
@@ -201,12 +212,7 @@
     }
 
     Bezier.prototype.atWithIntermidiate = function atWithIntermidiate(t) {
-        const points = [].concat(this.points);
-
-        const pointOn = (t, a, b) => ({
-            x: a.x + t * (b.x - a.x),
-            y: a.y + t * (b.y - a.y)
-        });
+        const points = this.points.slice();
 
         for (let i = this.grade + 1; i < sum(this.grade + 1); i++) {
             const a = i - levelReverse(this.grade, i) - 2;
@@ -217,7 +223,6 @@
 
         return points;
     }
-
 
     function CubicBezier(a, b, c, d) {
         this.a = {
