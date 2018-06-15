@@ -2,9 +2,6 @@
     const namespace = 'http://www.w3.org/2000/svg';
     const createSVGElement = document.createElementNS.bind(document, namespace);
 
-    const defaultSVGContainer = document.createElement('svg');
-    defaultSVGContainer.namespaceURI = namespace;
-
     function SimpleSVG(svgContainer) {
         this.svgContainer = svgContainer;
     }
@@ -33,7 +30,7 @@
         const polyline = createSVGElement('polyline');
 
         for (point of points) {
-            const svgPoint = defaultSVGContainer.createSVGPoint();
+            const svgPoint = this.svgContainer.createSVGPoint();
             svgPoint.x = point.x;
             svgPoint.y = point.y;
 

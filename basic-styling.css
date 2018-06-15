@@ -16,3 +16,7 @@ line {
     fill: white;
     stroke: grey;
 }
+
+.graph-parts {
+    stroke: rgba(200, 200, 200, 0.9);
+}

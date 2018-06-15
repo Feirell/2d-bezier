@@ -2,26 +2,22 @@
     const svgContainer = document.getElementById('svg-container');
     const tSlider = document.getElementById('t-slider');
 
+    // const bezier = new(Function.prototype.bind.apply(Bezier, [undefined].concat(holdingPoints)));
 
-    // function drawBezier(className, step, holdingPoints) {
-    //     const bezier = new(Function.prototype.bind.apply(Bezier, [undefined].concat(holdingPoints)));
+    function drawBaseBezierLine(simpleSVG, className, stepDistance, bezier) {
+        let steps = stepDistance;
+        if (stepDistance < 1)
+            steps = Math.round(1 / stepDistance);
 
-    //     for (holdingPoint of holdingPoints) {
-    //         svgContainer.appendChild(createCircleAt(holdingPoint.x, holdingPoint.y, 'holding-point ' + className));
-    //     }
+        const points = new Array(steps);
+        for (let i = 0; i <= steps; i++)
+            points[i] = bezier.at(i / steps);
 
-    //     svgContainer.appendChild(createPolyline('holding', holdingPoints));
+        simpleSVG.createPolyline(className + ' graph-parts', points);
+    }
 
-    //     for (let t = 0; t <= 1; t += step) {
-    //         const point = bezier.at(t);
-    //         svgContainer.appendChild(createCircleAt(point.x, point.y, 'intermidiate ' + className));
-    //     }
-    // }
-
-    function interactiveBezier(simpleSVG, className, holdingPoints) {
-        console.log('simpleSVG', simpleSVG);
-        const bezier = new(Function.prototype.bind.apply(Bezier, [undefined].concat(holdingPoints)));
-
+    function interactiveBezier(simpleSVG, className, bezier) {
+        drawBaseBezierLine(simpleSVG, className, 0.01, bezier)
         let interDots = [];
         let interDotLines = [];
 
@@ -30,8 +26,8 @@
             y: 0
         };
 
-        const dotsAmount = util.sum(holdingPoints.length);
-        const linesAmount = util.sum(holdingPoints.length - 1);
+        const dotsAmount = util.sum(bezier.grade + 1);
+        const linesAmount = util.sum(bezier.grade);
 
 
         for (let i = 0; i < linesAmount; i++) {
@@ -73,68 +69,40 @@
         }
     }
 
-
-    /*
-        drawBezier('bez-1', 0.05, [{
-                x: 30,
-                y: 30
-            },
-            {
-                x: 70,
-                y: 30
-            }, {
-                x: 250,
-                y: 180
-            },
-            {
-                x: 290,
-                y: 180
-            }
-        ])
-    */
-
     const interactives = []
-    interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-a')), 'bez-1', [{
-            x: 30,
-            y: 30
-        },
-        {
-            x: 130,
-            y: 30
-        }, {
-            x: 190,
-            y: 180
-        },
-        {
-            x: 290,
-            y: 180
-        }
-    ]);
+    interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-a')), 'bez-1', new Bezier({
+        x: 30,
+        y: 30
+    }, {
+        x: 130,
+        y: 30
+    }, {
+        x: 190,
+        y: 180
+    }, {
+        x: 290,
+        y: 180
+    }));
 
-    interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-b')), 'bez-2', [{
-            x: 20,
-            y: 80
-        },
-        {
-            x: 40,
-            y: 40
-        }, {
-            x: 60,
-            y: 20
-        },
-        {
-            x: 100,
-            y: 20
-        },
-        {
-            x: 120,
-            y: 40
-        },
-        {
-            x: 140,
-            y: 80
-        }
-    ]);
+    interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-b')), 'bez-2', new Bezier({
+        x: 20,
+        y: 80
+    }, {
+        x: 40,
+        y: 40
+    }, {
+        x: 60,
+        y: 20
+    }, {
+        x: 100,
+        y: 20
+    }, {
+        x: 120,
+        y: 40
+    }, {
+        x: 140,
+        y: 80
+    }));
 
     tSlider.addEventListener('input', function (ev) {
         const t = parseFloat(ev.target.value);
