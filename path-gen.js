@@ -71,37 +71,37 @@
 
     const interactives = []
     interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-a')), 'bez-1', new Bezier({
-        x: 30,
-        y: 30
+        x: 15,
+        y: 15
     }, {
-        x: 130,
-        y: 30
+        x: 65,
+        y: 15
     }, {
-        x: 190,
-        y: 180
+        x: 85,
+        y: 135
     }, {
-        x: 290,
-        y: 180
+        x: 135,
+        y: 135
     }));
 
     interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-b')), 'bez-2', new Bezier({
-        x: 20,
-        y: 80
+        x: 15,
+        y: 105
     }, {
-        x: 40,
-        y: 40
+        x: 35,
+        y: 65
     }, {
-        x: 60,
-        y: 20
+        x: 55,
+        y: 45
     }, {
-        x: 100,
-        y: 20
+        x: 95,
+        y: 45
     }, {
-        x: 120,
-        y: 40
+        x: 115,
+        y: 65
     }, {
-        x: 140,
-        y: 80
+        x: 135,
+        y: 105
     }));
 
     tSlider.addEventListener('input', function (ev) {
