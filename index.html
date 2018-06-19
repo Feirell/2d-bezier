@@ -7,20 +7,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
+    <!-- <link href="https://fonts.googleapis.com/css?subset=latin-ext&amp;family=Bitter:400,700|Roboto:400,500,700" rel="stylesheet" async> -->
     <link rel="stylesheet" href="./basic-svg-styling.css">
+    <link rel="stylesheet" href="./page-style.css">
+
+
     <script src="./simple-svg.js"></script>
     <script src="./bezier.js"></script>
 </head>
 
 <body>
+    <main>
+        <section>
+            <h1>Example Curves</h1>
+            <div id="example-curves">
+                <svg viewBox="0 0 150 150" version="1.1" baseProfile="full" width="150" height="150" xmlns="http://www.w3.org/2000/svg" id="svg-container-a"></svg>
+                <svg viewBox="0 0 150 150" version="1.1" baseProfile="full" width="150" height="150" xmlns="http://www.w3.org/2000/svg" id="svg-container-b"></svg>
+                <svg viewBox="0 0 150 150" version="1.1" baseProfile="full" width="150" height="150" xmlns="http://www.w3.org/2000/svg" id="svg-container-c"></svg>
+            </div>
+        </section>
 
-    <svg version="1.1" baseProfile="full" width="150" height="150" xmlns="http://www.w3.org/2000/svg" id="svg-container-a"></svg>
-    <svg version="1.1" baseProfile="full" width="150" height="150" xmlns="http://www.w3.org/2000/svg" id="svg-container-b"></svg>
-    <svg version="1.1" baseProfile="full" width="150" height="150" xmlns="http://www.w3.org/2000/svg" id="svg-container-c"></svg>
+        <input type="range" name="t-slider" id="t-slider" max="1" min="0" step="any" list="step-legend">
 
-    <input type="range" name="t-slider" id="t-slider" max="1" min="0" step="any" list="step-legend">
-
-    <datalist>
+        <datalist>
         <option value="0" label="0">
         <option value="0.1">
         <option value="0.2">
@@ -33,7 +42,7 @@
         <option value="0.9">
         <option value="1" label="1">
     </datalist>
-
+    </main>
     <script src="./path-gen.js"></script>
 </body>
 
