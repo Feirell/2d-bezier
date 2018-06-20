@@ -106,29 +106,42 @@
 
     interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-c')), 'bez-3', new Bezier({
         x: 15,
-        y: 105
-    }, {
-        x: 35,
-        y: 65
-    }, {
-        x: 55,
-        y: 45
-    }, {
-        x: 95,
-        y: 45
-    }, {
-        x: 115,
-        y: 65
+        y: 135
     }, {
         x: 135,
-        y: 105
+        y: 15
+    }, {
+        x: 135,
+        y: 135
+    }, {
+        x: 15,
+        y: 135
     }));
 
-    tSlider.addEventListener('input', function (ev) {
-        const t = parseFloat(ev.target.value);
-        // interactive.setPointAt(t);
-        for (let int of interactives)
-            int.setPointAt(t);
-    })
+    {
+        let changed = true;
+        let t = 0.5;
 
+        function cycle() {
+            if (changed) {
+                const nt = t;
+                changed = false;
+                for (let int of interactives)
+                    int.setPointAt(nt);
+            }
+
+            requestAnimationFrame(cycle)
+        }
+
+        requestAnimationFrame(cycle)
+
+        tSlider.addEventListener('input', function (ev) {
+            const nt = parseFloat(ev.target.value);
+            if (nt != t) {
+                changed = true;
+                t = nt;
+            }
+
+        })
+    }
 })()
