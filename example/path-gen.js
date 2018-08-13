@@ -1,3 +1,16 @@
+import {
+    SimpleSVG
+} from "./simple-svg.js";
+
+import {
+    Bezier
+} from "../lib/bezier.js";
+
+import {
+    level,
+    sum
+} from '../lib/math-functions.js';
+
 (function () {
     const svgContainer = document.getElementById('svg-container');
     const tSlider = document.getElementById('t-slider');
@@ -26,19 +39,19 @@
             y: 0
         };
 
-        const dotsAmount = util.sum(bezier.grade + 1);
-        const linesAmount = util.sum(bezier.grade);
+        const dotsAmount = sum(bezier.grade + 1);
+        const linesAmount = sum(bezier.grade);
 
 
         for (let i = 0; i < linesAmount; i++) {
-            const level = util.level(bezier.grade - 1, i);
-            const itemClassString = 'line ' + className + ' ' + ((level == 0 || i == dotsAmount - 1) ? (level == 0 ? 'holding' : 'final') : 'intermidiate intermidiate-' + level);
+            const currentLevel = level(bezier.grade - 1, i);
+            const itemClassString = 'line ' + className + ' ' + ((currentLevel == 0 || i == dotsAmount - 1) ? (currentLevel == 0 ? 'holding' : 'final') : 'intermidiate intermidiate-' + currentLevel);
             interDotLines[i] = simpleSVG.createLine(itemClassString, c, c);
         }
 
         for (let i = 0; i < dotsAmount; i++) {
-            const level = util.level(bezier.grade, i);
-            const itemClassString = 'point ' + className + ' ' + ((level == 0 || i == dotsAmount - 1) ? (level == 0 ? 'holding' : 'final') : 'intermidiate intermidiate-' + level) + ' pointname-' + String.fromCharCode(65 + i);
+            const currentLevel = level(bezier.grade, i);
+            const itemClassString = 'point ' + className + ' ' + ((currentLevel == 0 || i == dotsAmount - 1) ? (currentLevel == 0 ? 'holding' : 'final') : 'intermidiate intermidiate-' + currentLevel) + ' pointname-' + String.fromCharCode(65 + i);
             interDots[i] = simpleSVG.createCircleAt(0, 0, itemClassString);
         }
 
@@ -51,7 +64,7 @@
                 interDots[i].cx.baseVal.value = points[i].x;
                 interDots[i].cy.baseVal.value = points[i].y;
 
-                if (util.level(bezier.grade, i) == util.level(bezier.grade, i + 1)) {
+                if (level(bezier.grade, i) == level(bezier.grade, i + 1)) {
                     interDotLines[interDotLineCounter].x1.baseVal.value = points[i].x;
                     interDotLines[interDotLineCounter].y1.baseVal.value = points[i].y;
                     interDotLines[interDotLineCounter].x2.baseVal.value = points[i + 1].x;
