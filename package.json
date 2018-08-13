@@ -1,0 +1,9 @@
+{
+  "name": "bezier",
+  "version": "0.0.1",
+  "module": "./lib/index.js",
+  "repository": "https://github.com/Feirell/bezier.git",
+  "author": "Florian Völker <Neirolf2030@web.de>",
+  "license": "MIT",
+  "private": false
+}
