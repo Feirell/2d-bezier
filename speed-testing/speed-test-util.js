@@ -112,9 +112,5 @@ function test(variantsToTest, iterations) {
 }
 
 export {
-    test as
-    default,
-    testAllInstances,
-    testInstance,
-    produceOutput
+    test
 };
