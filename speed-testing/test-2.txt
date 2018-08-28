@@ -1,0 +1,74 @@
+Firefox:
+
+Testing Bezier and CubicBezier 2.500.000 times in each cycle (one line)
+
+Configuration:
+  repetition: 10
+  interReAlt: 10
+  stepsCycle: 500
+  stepsCount: 500
+
+Bezier: 1.126ms, CubicBezier: 855ms
+Bezier: 1.101ms, CubicBezier: 845ms
+Bezier: 1.097ms, CubicBezier: 854ms
+Bezier: 1.116ms, CubicBezier: 879ms
+Bezier: 1.085ms, CubicBezier: 841ms
+Bezier: 1.091ms, CubicBezier: 847ms
+Bezier: 1.097ms, CubicBezier: 862ms
+Bezier: 1.111ms, CubicBezier: 855ms
+Bezier: 1.109ms, CubicBezier: 839ms
+Bezier: 1.100ms, CubicBezier: 842ms
+
+min     1.085ms               839ms
+max     1.126ms               879ms
+avg     1.103ms               852ms
+
+Edge:
+
+Testing Bezier and CubicBezier 2.500.000 times in each cycle (one line)
+
+Configuration:
+  repetition: 10
+  interReAlt: 10
+  stepsCycle: 500
+  stepsCount: 500
+
+Bezier: 2.078ms, CubicBezier: 262ms
+Bezier: 2.050ms, CubicBezier: 241ms
+Bezier: 2.032ms, CubicBezier: 249ms
+Bezier: 2.027ms, CubicBezier: 249ms
+Bezier: 2.033ms, CubicBezier: 239ms
+Bezier: 2.043ms, CubicBezier: 247ms
+Bezier: 2.031ms, CubicBezier: 244ms
+Bezier: 2.039ms, CubicBezier: 238ms
+Bezier: 2.056ms, CubicBezier: 235ms
+Bezier: 2.049ms, CubicBezier: 236ms
+
+min     2.027ms               235ms
+max     2.078ms               262ms
+avg     2.044ms               244ms
+
+Chrome:
+
+Testing Bezier and CubicBezier 2.500.000 times in each cycle (one line)
+
+Configuration:
+  repetition: 10
+  interReAlt: 10
+  stepsCycle: 500
+  stepsCount: 500
+
+Bezier: 749ms, CubicBezier: 92ms
+Bezier: 708ms, CubicBezier: 81ms
+Bezier: 706ms, CubicBezier: 81ms
+Bezier: 706ms, CubicBezier: 81ms
+Bezier: 711ms, CubicBezier: 78ms
+Bezier: 711ms, CubicBezier: 79ms
+Bezier: 710ms, CubicBezier: 81ms
+Bezier: 709ms, CubicBezier: 77ms
+Bezier: 702ms, CubicBezier: 82ms
+Bezier: 705ms, CubicBezier: 76ms
+
+min     702ms               76ms
+max     749ms               92ms
+avg     712ms               81ms
