@@ -12,8 +12,9 @@ function testInstance(bezier, ite) {
 
 const formatNumber = (v, extend) => {
     let frm = v.toLocaleString(undefined, {});
-    if (extend)
+    if (extend > frm.length)
         frm = frm.padStart(extend, ' ');
+
     return frm;
 };
 
@@ -23,7 +24,7 @@ function produceOutput(variants, ite) {
         const variant = variants[v];
 
         variant.sum = variant.cycleTime.reduce((a, v) => a + v);
-        variant.sorted = variant.cycleTime.slice().sort();
+        variant.sorted = variant.cycleTime.slice().sort((a, b) => a - b);
         variant.greatest = variant.sorted[variant.sorted.length - 1];
         variant.lowest = variant.sorted[0];
         variant.avarage = variant.sum / variant.cycleTime.length;

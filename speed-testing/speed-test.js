@@ -1,7 +1,7 @@
 import {
     Bezier,
     CubicBezier
-} from './index.js';
+} from '../index.js';
 import {
     test
 } from './speed-test-util.js';
@@ -34,7 +34,7 @@ const variantsToTest = [{
 const iterations = {
     repetition: 10,
     interReAlt: 10,
-    stepsCycle: 500,
+    stepsCycle: 50,
     stepsCount: 500,
 }
 
