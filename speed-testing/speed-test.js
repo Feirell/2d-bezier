@@ -2,7 +2,9 @@ import {
     Bezier,
     CubicBezier
 } from './index.js';
-import test from './speed-test-util.js';
+import {
+    test
+} from './speed-test-util.js';
 
 const pa = {
     x: 0,
