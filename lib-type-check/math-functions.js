@@ -4,6 +4,9 @@ const factorialCache = [1, 1];
 let factorialIndex = 2;
 
 function factorial(n) {
+    if (!isFinite(n = parseInt(n)) || n < 0)
+        throw new Error('argument for factorial has to be a positive finite integer but was ' + n);
+
     for (; factorialIndex <= n; factorialIndex++)
         factorialCache[factorialIndex] = factorialCache[factorialIndex - 1] * factorialIndex;
 
@@ -11,6 +14,9 @@ function factorial(n) {
 }
 
 function reverseFactorial(n) {
+    if (!isFinite(n = parseFloat(n)) || n < 0)
+        throw new Error('argument for reverseFactorial has to be a positive finite floatingpoint number but was ' + n);
+
     let f = 1;
 
     while (true)
@@ -22,7 +28,7 @@ function reverseFactorial(n) {
 const bcCache = [];
 
 // binomial coefficient
-function bc(n, k) {
+function bc(n, k) { // TODO maybe add some typechecks
 
     if (k > n / 2)
         k = n - k;
