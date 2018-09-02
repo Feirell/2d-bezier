@@ -4,11 +4,11 @@ import {
 } from '../index.js';
 
 import {
-    Bezier as TypeBezier
+    Bezier as TypedBezier
 } from '../lib-type-check/bezier.js';
 
 import {
-    CubicBezier as TypeCubicBezier
+    CubicBezier as TypedCubicBezier
 } from '../lib-type-check/cubic-bezier.js';
 
 import {
@@ -31,21 +31,28 @@ const pd = {
     x: 1,
     y: 1
 };
-
+const bezierForIntermediate = new Bezier(pa, pb, pc, pd);
 // you can use any instance, as long as the instance has an at methode which expects a float value as its first argument
 const variantsToTest = [{
-    name: "Bezier",
-    instance: new Bezier(pa, pb, pc, pd)
-}, {
-    name: "CubicBezier",
-    instance: new CubicBezier(pa, pb, pc, pd)
-}, {
-    name: "TypeBezier",
-    instance: new TypeBezier(pa, pb, pc, pd)
-}, {
-    name: "TypeCubicBezier",
-    instance: new TypeCubicBezier(pa, pb, pc, pd)
-}];
+        name: "Bezier",
+        instance: new Bezier(pa, pb, pc, pd)
+    }, {
+        name: "CubicBezier",
+        instance: new CubicBezier(pa, pb, pc, pd)
+    }, {
+        name: "TypedBezier",
+        instance: new TypedBezier(pa, pb, pc, pd)
+    }, {
+        name: "TypedCubicBezier",
+        instance: new TypedCubicBezier(pa, pb, pc, pd)
+    },
+    {
+        name: "Bezier w/ intermediate",
+        instance: {
+            at: n => bezierForIntermediate.atWithIntermidiate(n).pop()
+        }
+    }
+];
 
 for (let variant of variantsToTest) {
     const calcedPoint = variant.instance.at(0.3);
