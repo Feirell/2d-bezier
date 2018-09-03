@@ -12,5 +12,11 @@
   "private": false,
   "devDependencies": {
     "rollup": "^0.65.0"
-  }
+  },
+  "files": [
+    "package.json",
+    "index.js",
+    "index-cjs.js",
+    "lib/"
+  ]
 }
