@@ -1,6 +1,7 @@
 {
   "name": "bezier",
   "version": "0.0.1",
+  "main": "index-cjs.js",
   "module": "./index.js",
   "scripts": {
     "bundle": "rollup ./index.js -f cjs -o index-cjs.js"
