@@ -1,15 +1,9 @@
 import {
     Bezier,
-    CubicBezier
+    CubicBezier,
+    TypedBezier,
+    TypedCubicBezier
 } from '../index.js';
-
-import {
-    Bezier as TypedBezier
-} from '../lib-type-check/bezier.js';
-
-import {
-    CubicBezier as TypedCubicBezier
-} from '../lib-type-check/cubic-bezier.js';
 
 import {
     test
