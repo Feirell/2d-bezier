@@ -1,0 +1,23 @@
+Firefox (63.0) on Windows 10 64-bit
+
+Bezier x 8,219,700 ops/sec ±0.66% (64 runs sampled)
+CubicBezier x 89,374,748 ops/sec ±0.61% (63 runs sampled)
+TypedBezier x 4,660,903 ops/sec ±0.57% (65 runs sampled)
+TypedCubicBezier x 7,712,620 ops/sec ±0.60% (62 runs sampled)
+Bezier w/ intermediate x 1,729,693 ops/sec ±0.66% (62 runs sampled)
+
+Microsoft Edge (17.17134) on Windows 10 64-bit
+
+Bezier x 1,421,326 ops/sec ±1.00% (57 runs sampled)
+CubicBezier x 7,650,750 ops/sec ±2.13% (55 runs sampled)
+TypedBezier x 1,059,710 ops/sec ±1.64% (61 runs sampled)
+TypedCubicBezier x 5,581,853 ops/sec ±2.00% (58 runs sampled)
+Bezier w/ intermediate x 1,113,965 ops/sec ±2.87% (55 runs sampled)
+
+Chrome (68.0.3440.106) on Windows 10 64-bit
+
+Bezier x 3,935,082 ops/sec ±0.54% (62 runs sampled)
+CubicBezier x 206,439,091 ops/sec ±0.39% (65 runs sampled)
+TypedBezier x 2,960,411 ops/sec ±0.50% (62 runs sampled)
+TypedCubicBezier x 48,809,005 ops/sec ±0.42% (64 runs sampled)
+Bezier w/ intermediate x 2,369,729 ops/sec ±6.43% (61 runs sampled)

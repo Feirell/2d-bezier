@@ -4,6 +4,7 @@
   "main": "index-cjs.js",
   "module": "./index.js",
   "scripts": {
+    "prepublish": "npm run bundle",
     "bundle": "rollup ./index.js -f cjs -o index-cjs.js"
   },
   "repository": "https://github.com/Feirell/bezier.git",
@@ -11,6 +12,8 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "benchmark": "^2.1.4",
+    "microtime": "^2.1.8",
     "rollup": "^0.65.0"
   },
   "files": [
@@ -18,5 +21,13 @@
     "index.js",
     "index-cjs.js",
     "lib/"
+  ],
+  "bugs": {
+    "url": "https://github.com/Feirell/bezier/issues"
+  },
+  "keywords": [
+    "bezier",
+    "curve",
+    "spline"
   ]
 }
