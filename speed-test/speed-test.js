@@ -31,7 +31,7 @@ const variantsToTest = [{
         name: "Bezier",
         instance: new Bezier(pa, pb, pc, pd)
     }, {
-        name: "ProducedBezier",
+        name: "ProducedBezier (Spec.)",
         instance: new ProducedBezier(pa, pb, pc, pd)
     }, {
         name: "CubicBezier",
