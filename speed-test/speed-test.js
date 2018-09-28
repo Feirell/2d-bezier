@@ -4,6 +4,9 @@ import {
     TypedBezier,
     TypedCubicBezier
 } from '../index.js';
+import {
+    ProducedBezier
+} from '../lib/produced-bezier.js';
 
 const pa = {
     x: 0,
@@ -25,24 +28,27 @@ const pd = {
 const bezierForIntermediate = new Bezier(pa, pb, pc, pd);
 // you can use any instance, as long as the instance has an at methode which expects a float value as its first argument
 const variantsToTest = [{
-    name: "Bezier",
-    instance: new Bezier(pa, pb, pc, pd)
-}, {
-    name: "CubicBezier",
-    instance: new CubicBezier(pa, pb, pc, pd)
-}, {
-    name: "TypedBezier",
-    instance: new TypedBezier(pa, pb, pc, pd)
-}, {
-    name: "TypedCubicBezier",
-    instance: new TypedCubicBezier(pa, pb, pc, pd)
-},
-{
-    name: "Bezier w/ intermediate",
-    instance: {
-        at: n => bezierForIntermediate.atWithIntermidiate(n).pop()
+        name: "Bezier",
+        instance: new Bezier(pa, pb, pc, pd)
+    }, {
+        name: "ProducedBezier (Spec.)",
+        instance: new ProducedBezier(pa, pb, pc, pd)
+    }, {
+        name: "CubicBezier",
+        instance: new CubicBezier(pa, pb, pc, pd)
+    }, {
+        name: "TypedBezier",
+        instance: new TypedBezier(pa, pb, pc, pd)
+    }, {
+        name: "TypedCubicBezier",
+        instance: new TypedCubicBezier(pa, pb, pc, pd)
+    },
+    {
+        name: "Bezier w/ intermediate",
+        instance: {
+            at: n => bezierForIntermediate.atWithIntermidiate(n).pop()
+        }
     }
-}
 ];
 
 for (let variant of variantsToTest) {
@@ -93,8 +99,12 @@ function createTableLikeOutput(columnNames, rows) {
     return str;
 }
 
-const integerFormatter = Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
-const floatFormatter = Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
+const integerFormatter = Intl.NumberFormat('en-US', {
+    maximumFractionDigits: 0
+});
+const floatFormatter = Intl.NumberFormat('en-US', {
+    maximumFractionDigits: 2
+});
 
 function formatNumber(integer, number) {
     if (number == 0)
@@ -126,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
         printStatus(suite);
     });
 
-    suite.on('complete', function () { });
+    suite.on('complete', function () {});
 
     suite.run({
         'async': true
