@@ -21,9 +21,9 @@ Bezier w/ intermediate   3,501,500     7.67      59
 Firefox (63.0) on Windows 10 64-bit
 
                   name     ops/sec variance samples
-                Bezier  14,778,919     0.76      57
-        ProducedBezier 111,582,400      1.8      57
-           CubicBezier 104,993,508     2.03      58
-           TypedBezier   6,864,415     2.46      60
-      TypedCubicBezier   9,681,814     0.72      63
-Bezier w/ intermediate   2,307,198      0.6      65
+                Bezier  15,877,704     1.25      60
+ProducedBezier (Spec.) 124,687,889     1.68      63
+           CubicBezier 106,240,381     3.02      56
+           TypedBezier   7,585,366      0.8      64
+      TypedCubicBezier  10,411,770     3.02      63
+Bezier w/ intermediate   2,554,384     0.41      67
