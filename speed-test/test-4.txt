@@ -1,3 +1,5 @@
+Tested on laptop
+
 Microsoft Edge (16.16299) on Windows 10 64-bit
 
                   name     ops/sec variance samples
