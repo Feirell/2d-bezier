@@ -125,11 +125,10 @@ function printStatus(suite) {
         ))
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-    const output = document.getElementById('output');
-    const suite = window.suite = new Benchmark.Suite;
+function testSubjects(subjects) {
+    const suite = new Benchmark.Suite;
 
-    for (let variant of variantsToTest)
+    for (let variant of subjects)
         suite.add(variant.name, variant.instance.at.bind(variant.instance, 0.3));
 
     suite.on('cycle', function (event) {
@@ -142,6 +141,10 @@ document.addEventListener('DOMContentLoaded', function () {
         'async': true
     });
 
-
     printStatus(suite);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    // const output = document.getElementById('output');
+    testSubjects(variantsToTest);
 });
