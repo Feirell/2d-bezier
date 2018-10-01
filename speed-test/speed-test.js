@@ -23,6 +23,34 @@ const pd = {
     y: 1
 };
 
+// you can use any instance, as long as the instance has an at methode which expects a float value as its first argument
+const variantsToCreate = [{
+    name: "Bezier",
+    instance: () => {
+        new Bezier(pa, pb, pc, pd);
+    }
+}, {
+    name: "ProducedBezier (Spec.)",
+    instance: () => {
+        new ProducedBezier(pa, pb, pc, pd);
+    }
+}, {
+    name: "CubicBezier",
+    instance: () => {
+        new CubicBezier(pa, pb, pc, pd);
+    }
+}, {
+    name: "TypedBezier",
+    instance: () => {
+        new TypedBezier(pa, pb, pc, pd);
+    }
+}, {
+    name: "TypedCubicBezier",
+    instance: () => {
+        new TypedCubicBezier(pa, pb, pc, pd);
+    }
+}];
+
 const bezierForIntermediate = new Bezier(pa, pb, pc, pd);
 // you can use any instance, as long as the instance has an at methode which expects a float value as its first argument
 const variantsToTest = [{
@@ -70,8 +98,6 @@ function createTableLikeOutput(columnNames, rows) {
                 maxSizeColumns[c] = row[c].length;
     }
 
-
-
     let str = "";
     for (let c = 0; c < columns; c++) {
         str += columnNames[c].padStart(maxSizeColumns[c], ' ');
@@ -111,38 +137,55 @@ function formatNumber(integer, number) {
     return (integer ? integerFormatter : floatFormatter).format(number);
 }
 
-function printStatus(suite) {
-    output.innerText = platform.name + " (" + platform.version + ") on " + platform.os + "\n\n" +
-        createTableLikeOutput(['name', 'ops/sec', 'variance', 'samples'], suite.map(
-            benchmark => [
-                '' + benchmark.name,
-                '' + formatNumber(true, benchmark.hz),
-                '' + formatNumber(false, benchmark.stats.rme),
-                '' + formatNumber(true, benchmark.stats.sample.length)
-            ]
-        ))
+function stringyfySuite(suite) {
+    return createTableLikeOutput(['name', 'ops/sec', 'variance', 'samples'], suite.map(
+        benchmark => [
+            '' + benchmark.name,
+            '' + formatNumber(true, benchmark.hz),
+            '' + formatNumber(false, benchmark.stats.rme),
+            '' + formatNumber(true, benchmark.stats.sample.length)
+        ]
+    ));
+}
+
+function printStatus() {
+    output.innerText = platform.name + " (" + platform.version + ") on " + platform.os +
+        "\n\nCreation Timing\n" + stringyfySuite(createSuite) +
+        "\n\nAt Timing\n" + stringyfySuite(testSuite);
 }
 
 function testSubjects(subjects) {
     const suite = new Benchmark.Suite;
 
     for (let variant of subjects)
-        suite.add(variant.name, variant.instance.at.bind(variant.instance, 0.3));
+        suite.add(variant.name, variant.instance.at ?
+            variant.instance.at.bind(variant.instance, 0.3) :
+            variant.instance);
 
     suite.on('cycle', function (event) {
         printStatus(suite);
     });
 
-    suite.on('complete', function () {});
-
-    suite.run({
-        'async': true
-    });
-
-    printStatus(suite);
+    return suite;
 }
 
+let output, testSuite, createSuite;
 document.addEventListener('DOMContentLoaded', function () {
-    // const output = document.getElementById('output');
-    testSubjects(variantsToTest);
+    output = document.getElementById('output');
+    testSuite = testSubjects(variantsToTest);
+    createSuite = testSubjects(variantsToCreate);
+
+    testSuite.on('complete', function () {
+        createSuite.run({
+            'async': true
+        });
+        printStatus();
+    });
+
+    testSuite.run({
+        'async': true
+    });
+    printStatus();
+
+
 });
