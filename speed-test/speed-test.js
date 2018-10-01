@@ -1,12 +1,10 @@
 import {
     Bezier,
+    ProducedBezier,
     CubicBezier,
     TypedBezier,
     TypedCubicBezier
 } from '../index.js';
-import {
-    ProducedBezier
-} from '../lib/produced-bezier.js';
 
 const pa = {
     x: 0,
