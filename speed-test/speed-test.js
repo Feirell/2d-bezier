@@ -1,6 +1,7 @@
 import {
     Bezier,
-    ProducedBezier,
+    ProducedSpezificBezier,
+    ProducedGeneralBezier,
     CubicBezier,
     TypedBezier,
     TypedCubicBezier
@@ -32,14 +33,14 @@ const variantsToCreate = [{
         new Bezier(points);
     }
 }, {
-    name: "ProducedBezier (Spec.)",
+    name: "ProducedSpezificBezier",
     instance: () => {
-        new ProducedBezier(points);
+        new ProducedSpezificBezier(points);
     }
 }, {
-    name: "ProducedBezier (Gen.)",
+    name: "ProducedGeneralBezier",
     instance: () => {
-        new ProducedBezier(points, true);
+        new ProducedGeneralBezier(points);
     }
 }, {
     name: "CubicBezier",
@@ -64,11 +65,11 @@ const variantsToTest = [{
         name: "Bezier",
         instance: new Bezier(points)
     }, {
-        name: "ProducedBezier (Spec.)",
-        instance: new ProducedBezier(points)
+        name: "ProducedSpezificBezier",
+        instance: new ProducedSpezificBezier(points)
     }, {
-        name: "ProducedBezier (Gen.)",
-        instance: new ProducedBezier(points, true)
+        name: "ProducedGeneralBezier",
+        instance: new ProducedGeneralBezier(points)
     }, {
         name: "CubicBezier",
         instance: new CubicBezier(points)
