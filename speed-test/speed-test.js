@@ -23,51 +23,61 @@ const pd = {
     y: 1
 };
 
+const points = [pa, pb, pc, pd];
+
 // you can use any instance, as long as the instance has an at methode which expects a float value as its first argument
 const variantsToCreate = [{
     name: "Bezier",
     instance: () => {
-        new Bezier(pa, pb, pc, pd);
+        new Bezier(points);
     }
 }, {
     name: "ProducedBezier (Spec.)",
     instance: () => {
-        new ProducedBezier(pa, pb, pc, pd);
+        new ProducedBezier(points);
+    }
+}, {
+    name: "ProducedBezier (Gen.)",
+    instance: () => {
+        new ProducedBezier(points, true);
     }
 }, {
     name: "CubicBezier",
     instance: () => {
-        new CubicBezier(pa, pb, pc, pd);
+        new CubicBezier(points);
     }
 }, {
     name: "TypedBezier",
     instance: () => {
-        new TypedBezier(pa, pb, pc, pd);
+        new TypedBezier(points);
     }
 }, {
     name: "TypedCubicBezier",
     instance: () => {
-        new TypedCubicBezier(pa, pb, pc, pd);
+        new TypedCubicBezier(points);
     }
 }];
 
-const bezierForIntermediate = new Bezier(pa, pb, pc, pd);
+const bezierForIntermediate = new Bezier(points);
 // you can use any instance, as long as the instance has an at methode which expects a float value as its first argument
 const variantsToTest = [{
         name: "Bezier",
-        instance: new Bezier(pa, pb, pc, pd)
+        instance: new Bezier(points)
     }, {
         name: "ProducedBezier (Spec.)",
-        instance: new ProducedBezier(pa, pb, pc, pd)
+        instance: new ProducedBezier(points)
+    }, {
+        name: "ProducedBezier (Gen.)",
+        instance: new ProducedBezier(points, true)
     }, {
         name: "CubicBezier",
-        instance: new CubicBezier(pa, pb, pc, pd)
+        instance: new CubicBezier(points)
     }, {
         name: "TypedBezier",
-        instance: new TypedBezier(pa, pb, pc, pd)
+        instance: new TypedBezier(points)
     }, {
         name: "TypedCubicBezier",
-        instance: new TypedCubicBezier(pa, pb, pc, pd)
+        instance: new TypedCubicBezier(points)
     },
     {
         name: "Bezier w/ intermediate",
@@ -175,14 +185,14 @@ document.addEventListener('DOMContentLoaded', function () {
     testSuite = testSubjects(variantsToTest);
     createSuite = testSubjects(variantsToCreate);
 
-    testSuite.on('complete', function () {
-        createSuite.run({
+    createSuite.on('complete', function () {
+        testSuite.run({
             'async': true
         });
         printStatus();
     });
 
-    testSuite.run({
+    createSuite.run({
         'async': true
     });
     printStatus();
