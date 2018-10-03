@@ -128,7 +128,7 @@ function formatNumber(integer, number) {
     return (integer ? integerFormatter : floatFormatter).format(number);
 }
 
-function stringyfySuite(suite) {
+function stringifySuite(suite) {
     return createTableLikeOutput(['name', 'ops/sec', 'variance', 'samples'], suite.map(
         benchmark => [
             '' + benchmark.name,
@@ -141,8 +141,8 @@ function stringyfySuite(suite) {
 
 function printStatus() {
     output.innerText = platform.name + " (" + platform.version + ") on " + platform.os +
-        "\n\nCreation Timing\n" + stringyfySuite(createSuite) +
-        "\n\nAt Timing\n" + stringyfySuite(testSuite);
+        "\n\nCreation Timing\n" + stringifySuite(createSuite) +
+        "\n\nAt Timing\n" + stringifySuite(testSuite);
 }
 
 function testSubjects(subjects) {
