@@ -1,0 +1,52 @@
+Tested on home pc
+
+Microsoft Edge (17.17134) on Windows 10 64-bit
+
+Creation Timing
+                  name     ops/sec variance samples
+                Bezier  24,417,206     4.12      54
+ProducedSpezificBezier     110,890     2.78      56
+ ProducedGeneralBezier  17,237,027     4.16      57
+           CubicBezier  18,315,791     6.21      52
+
+At Timing
+                  name     ops/sec variance samples
+                Bezier   5,137,584     1.33      60
+ProducedSpezificBezier   9,677,428     2.57      59
+ ProducedGeneralBezier   7,439,024     1.77      59
+           CubicBezier   8,258,959     2.27      58
+Bezier w/ intermediate   1,290,256     3.21      56
+
+Chrome (69.0.3497.100) on Windows 10 64-bit
+
+Creation Timing
+                  name     ops/sec variance samples
+                Bezier 102,381,025     0.31      64
+ProducedSpezificBezier     115,999     0.89      62
+ ProducedGeneralBezier  73,550,713     0.28      66
+           CubicBezier  75,861,693     0.32      65
+
+At Timing
+                  name     ops/sec variance samples
+                Bezier   9,336,054      0.4      66
+ProducedSpezificBezier 719,507,764     0.32      64
+ ProducedGeneralBezier 113,214,829     0.32      65
+           CubicBezier 222,465,663     0.27      66
+Bezier w/ intermediate   2,477,548     6.55      63
+
+Firefox (63.0) on Windows 10 64-bit
+
+Creation Timing
+                  name     ops/sec variance samples
+                Bezier 140,088,349     1.32      56
+ProducedSpezificBezier      21,960     4.78      59
+ ProducedGeneralBezier  56,552,426     0.46      65
+           CubicBezier  70,679,026        1      63
+
+At Timing
+                  name     ops/sec variance samples
+                Bezier  11,892,059     0.27      66
+ProducedSpezificBezier 104,932,216     0.87      63
+ ProducedGeneralBezier  43,671,992     0.32      66
+           CubicBezier  79,606,019     0.51      65
+Bezier w/ intermediate   2,318,577     0.43      63
