@@ -1,6 +1,6 @@
 {
   "name": "2d-bezier",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "index-cjs.js",
   "module": "./index.js",
   "scripts": {
