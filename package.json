@@ -24,6 +24,9 @@
   "keywords": [
     "bezier",
     "curve",
-    "spline"
+    "spline",
+    "animation",
+    "interpolation",
+    "2d"
   ]
 }
