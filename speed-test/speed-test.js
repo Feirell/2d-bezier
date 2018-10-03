@@ -2,9 +2,7 @@ import {
     Bezier,
     ProducedSpezificBezier,
     ProducedGeneralBezier,
-    CubicBezier,
-    TypedBezier,
-    TypedCubicBezier
+    CubicBezier
 } from '../index.js';
 
 const pa = {
@@ -47,46 +45,28 @@ const variantsToCreate = [{
     instance: () => {
         new CubicBezier(points);
     }
-}, {
-    name: "TypedBezier",
-    instance: () => {
-        new TypedBezier(points);
-    }
-}, {
-    name: "TypedCubicBezier",
-    instance: () => {
-        new TypedCubicBezier(points);
-    }
 }];
 
 const bezierForIntermediate = new Bezier(points);
 // you can use any instance, as long as the instance has an at methode which expects a float value as its first argument
 const variantsToTest = [{
-        name: "Bezier",
-        instance: new Bezier(points)
-    }, {
-        name: "ProducedSpezificBezier",
-        instance: new ProducedSpezificBezier(points)
-    }, {
-        name: "ProducedGeneralBezier",
-        instance: new ProducedGeneralBezier(points)
-    }, {
-        name: "CubicBezier",
-        instance: new CubicBezier(points)
-    }, {
-        name: "TypedBezier",
-        instance: new TypedBezier(points)
-    }, {
-        name: "TypedCubicBezier",
-        instance: new TypedCubicBezier(points)
-    },
-    {
-        name: "Bezier w/ intermediate",
-        instance: {
-            at: n => bezierForIntermediate.atWithIntermidiate(n).pop()
-        }
+    name: "Bezier",
+    instance: new Bezier(points)
+}, {
+    name: "ProducedSpezificBezier",
+    instance: new ProducedSpezificBezier(points)
+}, {
+    name: "ProducedGeneralBezier",
+    instance: new ProducedGeneralBezier(points)
+}, {
+    name: "CubicBezier",
+    instance: new CubicBezier(points)
+}, {
+    name: "Bezier w/ intermediate",
+    instance: {
+        at: n => bezierForIntermediate.atWithIntermidiate(n).pop()
     }
-];
+}];
 
 for (let variant of variantsToTest) {
     const calcedPoint = variant.instance.at(0.3);
