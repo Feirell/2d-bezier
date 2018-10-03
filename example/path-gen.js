@@ -83,7 +83,7 @@ import {
     }
 
     const interactives = []
-    interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-a')), 'bez-1', new Bezier({
+    interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-a')), 'bez-1', new Bezier([{
         x: 15,
         y: 15
     }, {
@@ -95,9 +95,9 @@ import {
     }, {
         x: 135,
         y: 135
-    }));
+    }]));
 
-    interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-b')), 'bez-2', new Bezier({
+    interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-b')), 'bez-2', new Bezier([{
         x: 15,
         y: 105
     }, {
@@ -115,9 +115,9 @@ import {
     }, {
         x: 135,
         y: 105
-    }));
+    }]));
 
-    interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-c')), 'bez-3', new Bezier({
+    interactives[interactives.length] = interactiveBezier(new SimpleSVG(document.getElementById('svg-container-c')), 'bez-3', new Bezier([{
         x: 15,
         y: 135
     }, {
@@ -129,7 +129,7 @@ import {
     }, {
         x: 15,
         y: 135
-    }));
+    }]));
 
     {
         let changed = true;
