@@ -1,0 +1,64 @@
+Tested on home pc
+
+Microsoft Edge (17.17134) on Windows 10 64-bit
+
+Creation Timing
+                  name     ops/sec variance samples
+                Bezier  23,853,920     5.13      52
+ProducedSpezificBezier     108,498     3.45      53
+ ProducedGeneralBezier   9,226,894     1.77      58
+           CubicBezier   4,610,955     1.44      61
+           TypedBezier     186,523     2.11      59
+      TypedCubicBezier   1,614,117     1.86      59
+
+At Timing
+                  name     ops/sec variance samples
+                Bezier   2,358,666     1.19      60
+ProducedSpezificBezier   9,035,020     2.82      58
+ ProducedGeneralBezier   3,255,648     1.36      60
+           CubicBezier   8,541,127      2.2      58
+           TypedBezier   2,262,303     1.44      61
+      TypedCubicBezier   5,965,764     1.45      59
+Bezier w/ intermediate     587,289      1.7      60
+
+Chrome (69.0.3497.100) on Windows 10 64-bit
+
+Creation Timing
+                  name     ops/sec variance samples
+                Bezier 102,423,475      0.3      64
+ProducedSpezificBezier     117,328     0.63      62
+ ProducedGeneralBezier  72,021,597     0.33      65
+           CubicBezier 101,843,227     0.24      65
+           TypedBezier     200,896     0.95      64
+      TypedCubicBezier   9,620,281     0.98      61
+
+At Timing
+                  name     ops/sec variance samples
+                Bezier   6,118,876     0.27      66
+ProducedSpezificBezier 680,895,568     0.45      63
+ ProducedGeneralBezier   6,703,595     0.29      65
+           CubicBezier 209,533,414     0.23      65
+           TypedBezier   5,916,935     0.27      65
+      TypedCubicBezier  51,255,554     0.22      65
+Bezier w/ intermediate     422,454     1.24      65
+
+Firefox (63.0) on Windows 10 64-bit
+
+Creation Timing
+                  name     ops/sec variance samples
+                Bezier 174,107,329     3.04      56
+ProducedSpezificBezier      20,781     5.21      55
+ ProducedGeneralBezier  62,338,988      1.1      63
+           CubicBezier  94,566,616      0.6      64
+           TypedBezier     197,985     0.99      64
+      TypedCubicBezier     869,673     1.67      62
+
+At Timing
+                  name     ops/sec variance samples
+                Bezier  12,086,959     0.51      65
+ProducedSpezificBezier 103,192,968     0.71      66
+ ProducedGeneralBezier  42,674,731     0.41      63
+           CubicBezier  79,500,636     0.36      64
+           TypedBezier   5,384,828     0.41      65
+      TypedCubicBezier   8,521,191     1.04      65
+Bezier w/ intermediate   1,802,890     0.47      66
