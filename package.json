@@ -1,5 +1,5 @@
 {
-  "name": "bezier",
+  "name": "2d-bezier",
   "version": "0.0.1",
   "main": "index-cjs.js",
   "module": "./index.js",
@@ -7,7 +7,7 @@
     "prepublish": "npm run bundle",
     "bundle": "rollup ./index.js -f cjs -o index-cjs.js"
   },
-  "repository": "https://github.com/Feirell/bezier.git",
+  "repository": "https://github.com/Feirell/2d-bezier.git",
   "author": "Florian Völker <Neirolf2030@web.de>",
   "license": "MIT",
   "private": false,
@@ -23,7 +23,7 @@
     "lib/"
   ],
   "bugs": {
-    "url": "https://github.com/Feirell/bezier/issues"
+    "url": "https://github.com/Feirell/2d-bezier/issues"
   },
   "keywords": [
     "bezier",
