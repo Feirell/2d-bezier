@@ -28,5 +28,8 @@
     "animation",
     "interpolation",
     "2d"
-  ]
+  ],
+  "dependencies": {
+    "algebra.js": "^0.2.6"
+  }
 }
