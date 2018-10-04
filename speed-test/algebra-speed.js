@@ -1,4 +1,6 @@
-import { stringifySuite } from "./result-formatter.js";
+import {
+    stringifySuite
+} from "./result-formatter.js";
 
 function bezier3rdDegreePoly(b0, b1, b2, b3) {
     return [
@@ -20,10 +22,48 @@ const parsedTerms = terms.map(t => {
 
 const funcTerms = terms.map(t => new Function('t', "return " + t[0] + "*t*t*t+" + t[1] + "*t*t+" + t[2] + "*t+" + t[3] + ";"));
 
-function inRange(should, is, margin) {
+function inRange(is, should, margin) {
     const under = is <= (should + margin);
     const above = is >= (should - margin);
     return under && above ? 0 : (under ? -1 : 1);
+}
+
+// taken from https://en.wikipedia.org/wiki/Cubic_function#Algebraic_solution
+function solveCubicFunc([a, b, c, d]) {
+    const delta0 = b * b -
+        3 * a * c;
+
+    const delta1 = 2 * b * b * b -
+        9 * a * b * c +
+        27 * a * a * d;
+
+    const delta = 18 * a * b * c * d -
+        4 * b * b * b * d +
+        b * b * c * c -
+        4 * a * c * c * c -
+        27 * a * a * d * d;
+
+    console.log('delta', delta, 'delta0', delta0, 'delta1', delta1);
+
+    const sign = 1;
+    const C1 = Math.cbrt((delta1 + Math.sqrt(delta1 * delta1 - 4 * delta0 * delta0 * delta0)) / 2);
+    const C2 = Math.cbrt((delta1 - Math.sqrt(delta1 * delta1 - 4 * delta0 * delta0 * delta0)) / 2);
+
+    console.log('delta', delta, 'delta0', delta0, 'delta1', delta1, 'C1', C1, 'C2', C2);
+
+    // if (inRange(delta, 0, 0.00001) == 0) {
+    //     if (inRange(delta0, 0, 0.00001) == 0) {
+    //         return [-b / (3 * a)];
+    //     } else {
+    //         return [(9 * a * d - b * c) / 2 * delta0, (4 * a * b * c - 9 * a * a * d - b * b * b) / (a * delta0)];
+    //     }
+    // }
+}
+
+function solveIWithDiscremenante(i, t) {
+    const term = terms[i].splice(0);
+    term[3] -= t;
+    return solveCubicFunc(term);
 }
 
 function binSearch(func, should, margin) {
@@ -62,22 +102,34 @@ function test(func) {
 
 test(solveIWithAlgebra);
 
-const variantsToTest = [{
-    name: "Algebra Solve",
-    func: () => {
-        test(solveIWithAlgebra)
-        // try {
-        // } catch (e) {
-        //     console.error(e);
-        // }
-        // console.log('no error');
+const variantsToTest = [
+    /*{
+        name: "Algebra Solve",
+        func: () => {
+            test(solveIWithAlgebra)
+            // try {
+            // } catch (e) {
+            //     console.error(e);
+            // }
+            // console.log('no error');
+        }
+    },*/
+    {
+        name: "Bin search (" + margin + ")",
+        func: () => {
+            return test(solveIWithBinary);
+        }
+    }, {
+        name: "algebra with discriminant",
+        func: () => {
+            return test(solveCubicFunc);
+        }
     }
-}, {
-    name: "Bin search (" + margin + ")",
-    func: () => {
-        test(solveIWithBinary)
-    }
-}];
+];
+// http://www.wolframalpha.com/input/?i=c%3D+cbrt(-127%2B+i*9*sqrt(591));+x%3D+-1%2F9+*(2%2Bc%2B40%2Fc)
+
+const specialTerm = [3, 2, -4, -2]; // roots ca -1.3, -0.47, 1.1
+console.log(solveCubicFunc(specialTerm));
 
 function printStatus() {
     output.innerText = platform.name + " (" + platform.version + ") on " + platform.os +
