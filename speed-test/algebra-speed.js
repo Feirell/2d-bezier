@@ -1,6 +1,6 @@
 import {
     stringifySuite
-} from "./result-formatter.js";
+} from "../node_modules/benchmark-suite-formatter/index-esm.js";
 
 function bezier3rdDegreePoly(b0, b1, b2, b3) {
     return [

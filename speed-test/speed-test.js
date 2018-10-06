@@ -7,7 +7,7 @@ import {
 
 import {
     stringifySuite
-} from './result-formatter.js';
+} from "../node_modules/benchmark-suite-formatter/index-esm.js";
 
 const pa = {
     x: 0,

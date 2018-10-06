@@ -12,6 +12,7 @@
   "private": false,
   "devDependencies": {
     "benchmark": "^2.1.4",
+    "benchmark-suite-formatter": "^1.0.0",
     "microtime": "^2.1.8",
     "rollup": "^0.66.3"
   },
